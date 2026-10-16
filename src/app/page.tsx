@@ -13,7 +13,7 @@ export default function Home() {
       <Hero />
       <Intro />
       <SolutionBento />
-      <section className="section overflow-hidden bg-white" aria-labelledby="work-title">
+      <section className="section overflow-hidden bg-canvas" aria-labelledby="work-title">
         <div className="container-page">
           <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
             <div id="work-title">

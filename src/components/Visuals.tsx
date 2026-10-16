@@ -5,7 +5,7 @@ import type { VisualKind } from "@/content/site";
 
 // Original, lightweight SVG illustrations. Animation is transform/opacity/dash only.
 
-const C = { accent: "#0071E3", electric: "#4F8CFF", violet: "#786BFF", danger: "#FF5A5F" };
+const C = { accent: "#8B5CF6", electric: "#A78BFA", violet: "#D8B4FE", danger: "#FF5A5F" };
 
 function Node({ x, y, r = 6, fill = C.accent, pulse = false }: { x: number; y: number; r?: number; fill?: string; pulse?: boolean }) {
   return (
@@ -17,8 +17,8 @@ function Node({ x, y, r = 6, fill = C.accent, pulse = false }: { x: number; y: n
 }
 
 function Workflow({ dark }: { dark?: boolean }) {
-  const stroke = dark ? "rgba(255,255,255,.22)" : "rgba(17,17,17,.14)";
-  const box = dark ? "#1b1e26" : "#fff";
+  const stroke = dark ? "rgba(255,255,255,.22)" : "rgba(255,255,255,.14)";
+  const box = dark ? "#1a1427" : "#fff";
   const steps = [
     { x: 30, y: 90, label: "Goal" },
     { x: 130, y: 40, label: "Plan" },
@@ -49,7 +49,7 @@ const graphNodes = [
 const graphEdges = [[0, 1], [1, 2], [2, 3], [0, 4], [4, 5], [5, 2], [5, 6], [6, 7], [3, 7], [4, 8], [8, 5], [8, 9], [9, 6], [1, 5]];
 
 export function NetworkGraph({ dark, suspicious = 5, highlightEdges = true }: { dark?: boolean; suspicious?: number | null; highlightEdges?: boolean }) {
-  const stroke = dark ? "rgba(255,255,255,.16)" : "rgba(17,17,17,.12)";
+  const stroke = dark ? "rgba(255,255,255,.16)" : "rgba(255,255,255,.12)";
   return (
     <svg viewBox="0 0 380 200" className="h-full w-full" aria-hidden>
       {graphEdges.map(([a, b], i) => {
@@ -64,13 +64,13 @@ export function NetworkGraph({ dark, suspicious = 5, highlightEdges = true }: { 
 }
 
 function Dashboard({ dark }: { dark?: boolean }) {
-  const surface = dark ? "#1b1e26" : "#fff";
+  const surface = dark ? "#1a1427" : "#fff";
   const line = dark ? "rgba(255,255,255,.1)" : "#E5E5E7";
   const bars = [40, 62, 48, 80, 66, 92, 74];
   return (
     <svg viewBox="0 0 380 200" className="h-full w-full" aria-hidden>
       <rect x={10} y={10} width={360} height={180} rx={14} fill={surface} stroke={line} />
-      <rect x={10} y={10} width={80} height={180} rx={14} fill={dark ? "#14161c" : "#F5F5F7"} />
+      <rect x={10} y={10} width={80} height={180} rx={14} fill={dark ? "#120e1c" : "#F5F5F7"} />
       {[40, 62, 84, 106].map((y, i) => <rect key={y} x={24} y={y} width={i === 0 ? 50 : 40} height={8} rx={4} fill={i === 0 ? C.accent : line} />)}
       {[0, 1, 2].map((i) => (
         <g key={i}>
@@ -89,8 +89,8 @@ function Dashboard({ dark }: { dark?: boolean }) {
 
 function Rag({ dark }: { dark?: boolean }) {
   const t = dark ? "#fff" : "#111";
-  const box = dark ? "#1b1e26" : "#fff";
-  const stroke = dark ? "rgba(255,255,255,.18)" : "rgba(17,17,17,.12)";
+  const box = dark ? "#1a1427" : "#fff";
+  const stroke = dark ? "rgba(255,255,255,.18)" : "rgba(255,255,255,.12)";
   return (
     <svg viewBox="0 0 380 200" className="h-full w-full" aria-hidden>
       {[0, 1, 2].map((i) => (
@@ -113,8 +113,8 @@ function Rag({ dark }: { dark?: boolean }) {
 }
 
 function Chain({ dark }: { dark?: boolean }) {
-  const box = dark ? "#1b1e26" : "#fff";
-  const stroke = dark ? "rgba(255,255,255,.18)" : "rgba(17,17,17,.12)";
+  const box = dark ? "#1a1427" : "#fff";
+  const stroke = dark ? "rgba(255,255,255,.18)" : "rgba(255,255,255,.12)";
   return (
     <svg viewBox="0 0 380 200" className="h-full w-full" aria-hidden>
       {[0, 1, 2, 3].map((i) => (
@@ -132,8 +132,8 @@ function Chain({ dark }: { dark?: boolean }) {
 }
 
 function Infra({ dark }: { dark?: boolean }) {
-  const stroke = dark ? "rgba(255,255,255,.18)" : "rgba(17,17,17,.12)";
-  const box = dark ? "#1b1e26" : "#fff";
+  const stroke = dark ? "rgba(255,255,255,.18)" : "rgba(255,255,255,.12)";
+  const box = dark ? "#1a1427" : "#fff";
   const edge = [[40, 150], [120, 160], [200, 150], [280, 160], [340, 145]];
   return (
     <svg viewBox="0 0 380 200" className="h-full w-full" aria-hidden>
@@ -157,7 +157,7 @@ function Infra({ dark }: { dark?: boolean }) {
   );
 }
 
-export default function SolutionVisual({ kind, dark }: { kind: VisualKind; dark?: boolean }) {
+export default function SolutionVisual({ kind, dark = true }: { kind: VisualKind; dark?: boolean }) {
   switch (kind) {
     case "workflow": return <Workflow dark={dark} />;
     case "threat": return <NetworkGraph dark={dark} />;

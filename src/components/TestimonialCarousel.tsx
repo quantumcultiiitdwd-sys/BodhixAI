@@ -34,7 +34,7 @@ function Carousel({ items, placeholder }: { items: Testimonial[]; placeholder: b
         touchX.current = null;
       }}
     >
-      {placeholder && <p className="mb-6 inline-block rounded-full bg-amber-100 px-3 py-1 text-[12px] text-amber-900">Development placeholder — not shown in production</p>}
+      {placeholder && <p className="mb-6 inline-block rounded-full bg-amber-400/15 px-3 py-1 text-[12px] text-amber-200">Development placeholder — not shown in production</p>}
       <Quote className="size-10 text-accent" aria-hidden />
       <div className="relative mt-6 min-h-[220px]" aria-live={playing ? "off" : "polite"}>
         <AnimatePresence mode="wait">
@@ -79,7 +79,7 @@ export default function TestimonialSection() {
       <section className="section" aria-labelledby="story-title">
         <div className="container-page">
           <div className="card relative overflow-hidden bg-mist p-10 md:p-20">
-            <div aria-hidden className="ambient absolute -right-20 -top-20 size-96 rounded-full bg-[radial-gradient(circle,rgba(79,140,255,0.2),transparent_65%)]" />
+            <div aria-hidden className="ambient absolute -right-20 -top-20 size-96 rounded-full bg-[radial-gradient(circle,rgba(167,139,250,0.2),transparent_65%)]" />
             <p className="eyebrow mb-5 text-accent">Built on trust</p>
             <h2 id="story-title" className="text-display max-w-3xl">Let&apos;s create the next success story.</h2>
             <p className="text-lead mt-6 max-w-xl text-muted">Meaningful technology begins with meaningful partnerships. Tell us what you&apos;re building.</p>

@@ -10,12 +10,12 @@ import ProjectVisual, { projectBackdrop } from "./ProjectVisual";
 import { Tag } from "./ui";
 
 export function ProjectCard({ project, active = true }: { project: Project; active?: boolean }) {
-  const dark = ["ids", "orbit", "federated"].includes(project.visual);
+  const dark = true;
   return (
     <motion.article
       animate={{ scale: active ? 1 : 0.94, opacity: active ? 1 : 0.8 }}
       transition={{ type: "spring", stiffness: 220, damping: 30 }}
-      className="group relative flex h-full flex-col overflow-hidden rounded-[28px] border border-line bg-white"
+      className="group relative flex h-full flex-col overflow-hidden rounded-[28px] border border-line bg-mist"
     >
       <Link href={`/work/${project.slug}`} className="absolute inset-0 z-10" aria-label={`View project: ${project.title}`} tabIndex={active ? 0 : -1} />
       <div className={`relative aspect-[16/10] overflow-hidden ${projectBackdrop[project.visual]}`}>

@@ -22,7 +22,7 @@ function Stage({ step }: { step: number }) {
           <div className="h-[85%]"><NetworkGraph dark suspicious={5} /></div>
         </div>
         <div className="flex flex-col gap-3">
-          {[["Risk", "Elevated", "text-[#FF5A5F]"], ["Confidence", "Calibrated", "text-[#4F8CFF]"], ["Hosts involved", "4", "text-white"]].map(([k, v, c]) => (
+          {[["Risk", "Elevated", "text-[#FF5A5F]"], ["Confidence", "Calibrated", "text-[#A78BFA]"], ["Hosts involved", "4", "text-white"]].map(([k, v, c]) => (
             <div key={k} className="flex-1 rounded-2xl bg-white/[0.04] p-4 ring-1 ring-white/10">
               <p className="text-[12px] text-white/50">{k}</p>
               <p className={`mt-1 text-xl font-semibold ${c}`}>{v}</p>
@@ -40,7 +40,7 @@ function Stage({ step }: { step: number }) {
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="absolute right-6 bottom-6 rounded-2xl bg-white/[0.06] p-4 ring-1 ring-white/10 backdrop-blur">
             <p className="text-[12px] text-white/50">Risk estimate</p>
             <div className="mt-2 h-1.5 w-44 rounded-full bg-white/10">
-              <motion.div initial={{ width: 0 }} animate={{ width: "76%" }} transition={{ duration: 0.8 }} className="h-full rounded-full bg-gradient-to-r from-[#4F8CFF] to-[#FF5A5F]" />
+              <motion.div initial={{ width: 0 }} animate={{ width: "76%" }} transition={{ duration: 0.8 }} className="h-full rounded-full bg-gradient-to-r from-[#A78BFA] to-[#FF5A5F]" />
             </div>
           </motion.div>
         )}
@@ -81,7 +81,7 @@ export default function CaseStudyScroller() {
           </ol>
           <div className="lg:col-span-7">
             <div className="relative aspect-[4/3] overflow-hidden rounded-[28px] bg-night-2 ring-1 ring-white/10">
-              <div aria-hidden className="ambient absolute -top-1/3 left-1/4 size-2/3 rounded-full bg-[radial-gradient(circle,rgba(79,140,255,0.18),transparent_65%)]" />
+              <div aria-hidden className="ambient absolute -top-1/3 left-1/4 size-2/3 rounded-full bg-[radial-gradient(circle,rgba(167,139,250,0.18),transparent_65%)]" />
               <AnimatePresence mode="wait">
                 <Stage step={step} />
               </AnimatePresence>

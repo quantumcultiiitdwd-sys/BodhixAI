@@ -35,7 +35,7 @@ export default function ProcessTimeline() {
                   <motion.span
                     aria-hidden
                     className="absolute top-0 left-0 block size-[15px] rounded-full border-2"
-                    animate={{ backgroundColor: on ? "#0071E3" : "#F5F5F7", borderColor: on ? "#0071E3" : "#D2D2D7", scale: i === active ? 1.25 : 1 }}
+                    animate={{ backgroundColor: on ? "#8B5CF6" : "#110e1a", borderColor: on ? "#8B5CF6" : "#3a3048", scale: i === active ? 1.25 : 1 }}
                     transition={{ duration: 0.3 }}
                   />
                   <p className={`font-mono text-[13px] transition-colors ${on ? "text-accent" : "text-muted"}`}>{s.n}</p>

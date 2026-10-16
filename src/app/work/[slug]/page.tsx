@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import ProjectVisual, { projectBackdrop } from "@/components/ProjectVisual";
@@ -28,7 +29,16 @@ function Block({ label, children }: { label: string; children: React.ReactNode }
   );
 }
 
-export default async function ProjectPage({ params }: PageProps<"/work/[slug]">) {
+// Params are read inside Suspense so the shared shell stays instant on navigation.
+export default function ProjectPage({ params }: PageProps<"/work/[slug]">) {
+  return (
+    <Suspense fallback={<div className="min-h-screen" />}>
+      <ProjectContent params={params} />
+    </Suspense>
+  );
+}
+
+async function ProjectContent({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const p = projects.find((x) => x.slug === slug);
   if (!p) notFound();
@@ -51,7 +61,7 @@ export default async function ProjectPage({ params }: PageProps<"/work/[slug]">)
         <Reveal delay={0.4} className="mt-14">
           <div className={`relative aspect-[16/9] overflow-hidden rounded-[28px] md:aspect-[21/9] ${projectBackdrop[p.visual]}`}>
             <div className="absolute inset-[8%_10%] md:inset-[10%_22%]"><ProjectVisual kind={p.visual} /></div>
-            <span className="absolute top-4 left-4 rounded-full bg-white/70 px-3 py-1 text-[11px] text-ink/60 backdrop-blur">Illustrative concept</span>
+            <span className="absolute top-4 left-4 rounded-full bg-white/10 px-3 py-1 text-[11px] text-white/70 backdrop-blur">Illustrative concept</span>
           </div>
         </Reveal>
       </section>

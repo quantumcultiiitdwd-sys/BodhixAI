@@ -44,28 +44,28 @@ function Core({ pointer }: { pointer: React.RefObject<{ x: number; y: number }> 
     <group ref={group}>
       <mesh>
         <icosahedronGeometry args={[1.25, 1]} />
-        <meshPhysicalMaterial transparent opacity={0.24} roughness={0.05} metalness={0.1} clearcoat={1} color="#cfe0ff" envMapIntensity={1.4} flatShading depthWrite={false} />
+        <meshPhysicalMaterial transparent opacity={0.24} roughness={0.05} metalness={0.1} clearcoat={1} color="#E4D7FF" envMapIntensity={1.4} flatShading depthWrite={false} />
       </mesh>
       <mesh ref={inner}>
         <torusKnotGeometry args={[0.52, 0.14, 180, 24]} />
-        <meshStandardMaterial metalness={0.85} roughness={0.2} color="#b9cbef" />
+        <meshStandardMaterial metalness={0.85} roughness={0.2} color="#C9B6F2" />
       </mesh>
       <mesh>
         <sphereGeometry args={[0.22, 32, 32]} />
-        <meshStandardMaterial emissive="#4F8CFF" emissiveIntensity={2.2} color="#4F8CFF" />
+        <meshStandardMaterial emissive="#A78BFA" emissiveIntensity={2.2} color="#A78BFA" />
       </mesh>
       <group ref={ring}>
         {nodePositions.map((p, i) => (
           <mesh key={i} position={p}>
             <sphereGeometry args={[i % 4 === 0 ? 0.065 : 0.045, 16, 16]} />
-            <meshStandardMaterial color={i % 3 === 0 ? "#786BFF" : "#0071E3"} emissive={i % 3 === 0 ? "#786BFF" : "#0071E3"} emissiveIntensity={0.6} />
+            <meshStandardMaterial color={i % 3 === 0 ? "#D8B4FE" : "#8B5CF6"} emissive={i % 3 === 0 ? "#D8B4FE" : "#8B5CF6"} emissiveIntensity={0.6} />
           </mesh>
         ))}
         <lineSegments>
           <bufferGeometry>
             <bufferAttribute attach="attributes-position" args={[linePositions, 3]} />
           </bufferGeometry>
-          <lineBasicMaterial color="#4F8CFF" transparent opacity={0.28} />
+          <lineBasicMaterial color="#A78BFA" transparent opacity={0.28} />
         </lineSegments>
       </group>
     </group>
@@ -83,16 +83,16 @@ export default function HeroCore3D({ active, pointer }: { active: boolean; point
     >
       <ambientLight intensity={0.5} />
       <directionalLight position={[4, 5, 3]} intensity={1.6} />
-      <pointLight position={[-3, -2, 2]} intensity={12} color="#786BFF" />
+      <pointLight position={[-3, -2, 2]} intensity={12} color="#D8B4FE" />
       <Float speed={1.4} rotationIntensity={0.25} floatIntensity={0.7}>
         <Core pointer={pointer} />
       </Float>
       {/* Local lightformers — no network HDR fetch */}
       <Environment resolution={256}>
-        <color attach="background" args={["#e8eef8"]} />
+        <color attach="background" args={["#1c1430"]} />
         <Lightformer form="rect" intensity={3} position={[0, 4, -4]} scale={[10, 2, 1]} />
-        <Lightformer form="rect" intensity={2} color="#9dbaff" position={[-5, 0, -2]} scale={[2, 8, 1]} />
-        <Lightformer form="rect" intensity={2} color="#c4bcff" position={[5, -1, -2]} scale={[2, 8, 1]} />
+        <Lightformer form="rect" intensity={2} color="#B69CFF" position={[-5, 0, -2]} scale={[2, 8, 1]} />
+        <Lightformer form="rect" intensity={2} color="#F0ABFC" position={[5, -1, -2]} scale={[2, 8, 1]} />
         <Lightformer form="ring" intensity={1.5} position={[0, 0, 5]} scale={4} />
       </Environment>
     </Canvas>

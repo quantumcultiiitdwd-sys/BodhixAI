@@ -10,7 +10,7 @@ import { budgetRanges, contactServices } from "@/content/site";
 import { contactSchema, type ContactInput } from "@/lib/contact-schema";
 
 const field =
-  "mt-2 block w-full rounded-2xl border border-line bg-white px-4 py-3.5 text-[16px] text-ink outline-none transition-[border-color,box-shadow] duration-200 placeholder:text-ink/35 focus:border-accent focus:shadow-[0_0_0_4px_rgba(0,113,227,0.12)] aria-[invalid=true]:border-danger";
+  "mt-2 block w-full rounded-2xl border border-line bg-mist px-4 py-3.5 text-[16px] text-ink outline-none transition-[border-color,box-shadow] duration-200 placeholder:text-ink/35 focus:border-accent focus:shadow-[0_0_0_4px_rgba(139,92,246,0.12)] aria-[invalid=true]:border-danger";
 
 function Field({ id, label, error, optional, children }: { id: string; label: string; error?: string; optional?: boolean; children: React.ReactNode }) {
   return (
@@ -114,7 +114,7 @@ export default function ContactForm() {
 
       <AnimatePresence>
         {status === "error" && (
-          <motion.p role="alert" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="rounded-2xl bg-red-50 px-4 py-3 text-[14px] text-red-700">
+          <motion.p role="alert" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="rounded-2xl bg-red-500/10 px-4 py-3 text-[14px] text-red-300">
             {serverError}
           </motion.p>
         )}
@@ -128,7 +128,7 @@ export default function ContactForm() {
           type="submit"
           disabled={status === "sending"}
           whileTap={{ scale: 0.97 }}
-          className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-accent px-7 font-medium text-white transition-colors hover:bg-[#0077ed] disabled:opacity-70"
+          className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-accent px-7 font-medium text-white transition-colors hover:bg-[#7C3AED] disabled:opacity-70"
         >
           {status === "sending" ? <><Loader2 className="size-4 animate-spin" aria-hidden /> Sending…</> : "Start a Conversation"}
         </motion.button>

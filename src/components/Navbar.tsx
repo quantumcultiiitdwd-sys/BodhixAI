@@ -36,7 +36,7 @@ export default function Navbar() {
 
   return (
     <>
-      <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-white">
+      <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-full focus:bg-accent focus:px-4 focus:py-2 focus:text-white">
         Skip to content
       </a>
       <motion.header
@@ -44,7 +44,7 @@ export default function Navbar() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease }}
         className={`fixed inset-x-0 top-0 z-50 border-b backdrop-blur-xl backdrop-saturate-150 transition-[background-color,border-color,height] duration-300 ${
-          scrolled || open ? "h-16 border-line/80 bg-white/80" : "h-[72px] border-transparent bg-white/40"
+          scrolled || open ? "h-16 border-line/80 bg-canvas/75" : "h-[72px] border-transparent bg-canvas/30"
         }`}
       >
         <nav aria-label="Primary" className="container-page flex h-full items-center justify-between gap-6">
@@ -75,7 +75,7 @@ export default function Navbar() {
           <div className="flex items-center gap-2">
             <Link
               href="/contact"
-              className="hidden h-9 items-center rounded-full bg-ink px-4 text-[14px] font-medium text-white transition-colors hover:bg-accent md:inline-flex"
+              className="hidden h-9 items-center rounded-full bg-accent px-4 text-[14px] font-medium text-white transition-colors hover:bg-[#7C3AED] md:inline-flex"
             >
               Let&apos;s Talk
             </Link>
@@ -101,7 +101,7 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 top-16 z-40 bg-white/95 backdrop-blur-xl md:hidden"
+            className="fixed inset-0 top-16 z-40 bg-canvas/95 backdrop-blur-xl md:hidden"
             onClick={(e) => (e.target as HTMLElement).closest("a") && setOpen(false)}
           >
             <motion.ul

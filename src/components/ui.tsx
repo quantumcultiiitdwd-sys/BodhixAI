@@ -104,9 +104,9 @@ export function SectionHeading({
 type Variant = "primary" | "secondary" | "dark" | "ghost-dark";
 
 const variants: Record<Variant, string> = {
-  primary: "bg-accent text-white hover:bg-[#0077ed] shadow-[0_8px_24px_-8px_rgba(0,113,227,0.55)]",
-  secondary: "bg-white text-ink ring-1 ring-line hover:ring-ink/25",
-  dark: "bg-ink text-white hover:bg-black",
+  primary: "bg-accent text-white hover:bg-[#7C3AED] shadow-[0_8px_24px_-8px_rgba(139,92,246,0.55)]",
+  secondary: "bg-white/5 text-ink ring-1 ring-white/15 hover:bg-white/10",
+  dark: "bg-white text-night hover:bg-white/90",
   "ghost-dark": "bg-white/8 text-white ring-1 ring-white/15 hover:bg-white/14",
 };
 

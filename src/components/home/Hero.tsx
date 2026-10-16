@@ -14,19 +14,19 @@ function CoreFallback() {
     <svg viewBox="0 0 400 400" className="h-full w-full" aria-hidden>
       <defs>
         <radialGradient id="cf-glass" cx="40%" cy="35%">
-          <stop offset="0%" stopColor="#ffffff" />
-          <stop offset="60%" stopColor="#dfe8ff" />
-          <stop offset="100%" stopColor="#b9ccff" />
+          <stop offset="0%" stopColor="#F5F0FF" />
+          <stop offset="60%" stopColor="#C9B5FF" />
+          <stop offset="100%" stopColor="#8B5CF6" />
         </radialGradient>
       </defs>
-      <circle cx="200" cy="200" r="150" fill="none" stroke="#4F8CFF" strokeOpacity="0.18" />
-      <polygon points="200,92 293,146 293,254 200,308 107,254 107,146" fill="url(#cf-glass)" stroke="#fff" strokeWidth="2" opacity="0.95" />
-      <polygon points="200,92 293,146 200,200" fill="#fff" opacity="0.5" />
-      <circle cx="200" cy="200" r="26" fill="#4F8CFF" />
-      <circle cx="200" cy="200" r="44" fill="none" stroke="#786BFF" strokeOpacity="0.5" />
+      <circle cx="200" cy="200" r="150" fill="none" stroke="#A78BFA" strokeOpacity="0.18" />
+      <polygon points="200,92 293,146 293,254 200,308 107,254 107,146" fill="url(#cf-glass)" stroke="#D8B4FE" strokeWidth="1.5" opacity="0.9" />
+      <polygon points="200,92 293,146 200,200" fill="#fff" opacity="0.18" />
+      <circle cx="200" cy="200" r="26" fill="#A78BFA" />
+      <circle cx="200" cy="200" r="44" fill="none" stroke="#D8B4FE" strokeOpacity="0.5" />
       {Array.from({ length: 12 }, (_, i) => {
         const a = (i / 12) * Math.PI * 2;
-        return <circle key={i} cx={200 + Math.cos(a) * 150} cy={200 + Math.sin(a) * 150} r={i % 3 ? 4 : 6} fill={i % 3 ? "#0071E3" : "#786BFF"} />;
+        return <circle key={i} cx={Math.round(200 + Math.cos(a) * 150)} cy={Math.round(200 + Math.sin(a) * 150)} r={i % 3 ? 4 : 6} fill={i % 3 ? "#8B5CF6" : "#D8B4FE"} />;
       })}
     </svg>
   );
@@ -76,9 +76,9 @@ export default function Hero() {
     <section ref={ref} onPointerMove={onPointerMove} className="relative isolate flex min-h-[100svh] items-center overflow-hidden pt-24 pb-16">
       {/* Ambient light */}
       <motion.div aria-hidden className="absolute inset-0 -z-10" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2 }}>
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#fff_0%,#F5F5F7_100%)]" />
-        <div className="ambient absolute top-[8%] right-[-10%] size-[60vw] max-w-[820px] rounded-full bg-[radial-gradient(circle,rgba(79,140,255,0.22),transparent_62%)] blur-2xl" />
-        <div className="ambient absolute bottom-[-20%] left-[-10%] size-[50vw] max-w-[700px] rounded-full bg-[radial-gradient(circle,rgba(120,107,255,0.14),transparent_60%)] blur-2xl [animation-delay:-6s]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,#07060b_0%,#0d0a16_100%)]" />
+        <div className="ambient absolute top-[8%] right-[-10%] size-[60vw] max-w-[820px] rounded-full bg-[radial-gradient(circle,rgba(167,139,250,0.22),transparent_62%)] blur-2xl" />
+        <div className="ambient absolute bottom-[-20%] left-[-10%] size-[50vw] max-w-[700px] rounded-full bg-[radial-gradient(circle,rgba(216,180,254,0.14),transparent_60%)] blur-2xl [animation-delay:-6s]" />
       </motion.div>
 
       <div className="container-page grid w-full items-center gap-10 lg:grid-cols-12">
@@ -124,7 +124,7 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      <div aria-hidden className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-white" />
+      <div aria-hidden className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-canvas" />
     </section>
   );
 }

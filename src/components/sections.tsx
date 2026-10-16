@@ -14,7 +14,7 @@ import { ease } from "@/lib/motion";
 export function Intro() {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const bg = useTransform(scrollYProgress, [0, 0.5, 1], ["#ffffff", "#F5F5F7", "#ffffff"]);
+  const bg = useTransform(scrollYProgress, [0, 0.5, 1], ["#07060b", "#110e1a", "#07060b"]);
   const statements = ["Built for intelligence.", "Designed for trust.", "Engineered to scale."];
   return (
     <motion.section ref={ref} style={{ backgroundColor: bg }} className="section" aria-labelledby="intro-title">
@@ -29,7 +29,7 @@ export function Intro() {
             </p>
           </Reveal>
         </div>
-        <ul className="space-y-6 self-end lg:col-span-6 lg:col-start-7">
+        <ul className="space-y-6 self-end overflow-x-clip lg:col-span-6 lg:col-start-7">
           {statements.map((s, i) => (
             <motion.li
               key={s}
@@ -61,13 +61,13 @@ const bentoSpans = [
 ];
 
 export function SolutionCard({ solution, className = "", featured = false }: { solution: Solution; className?: string; featured?: boolean }) {
-  const dark = featured;
+  const dark = true;
   return (
     <motion.article
       whileHover={{ y: -6 }}
       transition={{ type: "spring", stiffness: 300, damping: 26 }}
       className={`group relative flex flex-col overflow-hidden rounded-[28px] border transition-[border-color,box-shadow] duration-300 ${
-        dark ? "border-white/10 bg-night text-white hover:border-electric/50" : "border-line bg-white hover:border-accent/40 hover:shadow-[0_24px_60px_-30px_rgba(0,113,227,0.35)]"
+        dark ? "border-accent/30 bg-[radial-gradient(120%_80%_at_80%_0%,#2b1650_0%,#0b0814_60%)] text-white hover:border-electric/60" : "border-line bg-mist hover:border-accent/50 hover:shadow-[0_24px_60px_-30px_rgba(139,92,246,0.45)]"
       } ${className}`}
     >
       <Link href={`/solutions#${solution.slug}`} className="absolute inset-0 z-10" aria-label={`Learn about ${solution.title}`} />
@@ -82,7 +82,7 @@ export function SolutionCard({ solution, className = "", featured = false }: { s
       </div>
       <div className={`relative mt-auto flex items-center justify-center px-6 pb-6 transition-transform duration-500 ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.03] ${featured ? "min-h-56 flex-1" : "h-44"}`}>
         <div className={featured ? "w-full max-w-[520px]" : "h-full w-full"}>
-          <SolutionVisual kind={solution.visual} dark={dark} />
+          <SolutionVisual kind={solution.visual} />
         </div>
       </div>
     </motion.article>
@@ -119,7 +119,7 @@ export function Pillars() {
           {pillars.map((p) => {
             const Icon = pillarIcons[p.icon];
             return (
-              <StaggerItem key={p.title} className="group bg-white p-8 md:p-10">
+              <StaggerItem key={p.title} className="group bg-canvas p-8 md:p-10">
                 <motion.span whileHover={{ rotate: -8, scale: 1.06 }} className="inline-flex size-12 items-center justify-center rounded-2xl bg-mist text-accent">
                   <Icon className="size-6" strokeWidth={1.6} aria-hidden />
                 </motion.span>
@@ -137,15 +137,15 @@ export function Pillars() {
 /* --------------------------------- Research --------------------------------- */
 
 const statusStyle: Record<Research["status"], string> = {
-  Published: "bg-emerald-50 text-emerald-700",
-  Accepted: "bg-blue-50 text-accent",
-  Ongoing: "bg-violet-50 text-violet",
+  Published: "bg-emerald-400/10 text-emerald-300",
+  Accepted: "bg-accent/15 text-electric",
+  Ongoing: "bg-fuchsia-400/10 text-fuchsia-300",
 };
 
 export function ResearchCard({ r }: { r: Research }) {
   return (
-    <article className="flex h-full flex-col overflow-hidden rounded-[24px] border border-line bg-white transition-shadow duration-300 hover:shadow-[0_24px_60px_-34px_rgba(0,0,0,0.3)]">
-      <div className="h-40 bg-mist px-4 pt-4"><SolutionVisual kind={r.visual} /></div>
+    <article className="flex h-full flex-col overflow-hidden rounded-[24px] border border-line bg-canvas transition-shadow duration-300 hover:shadow-[0_24px_60px_-34px_rgba(0,0,0,0.3)]">
+      <div className="h-40 bg-[radial-gradient(100%_100%_at_50%_0%,#1d1333_0%,#110e1a_70%)] px-4 pt-4"><SolutionVisual kind={r.visual} /></div>
       <div className="flex flex-1 flex-col p-6">
         <div className="flex flex-wrap items-center gap-2">
           <span className={`rounded-full px-2.5 py-0.5 text-[12px] font-medium ${statusStyle[r.status]}`}>{r.status}</span>
@@ -226,7 +226,7 @@ export function FounderSection() {
           {founders.map((f) => (
             <Reveal key={f.name} className="card grid gap-10 p-8 md:grid-cols-12 md:p-12">
               <div className="md:col-span-4">
-                <div aria-hidden className="flex aspect-square w-40 items-center justify-center rounded-[28px] bg-[linear-gradient(140deg,#0071E3,#786BFF)] text-5xl font-semibold tracking-tight text-white">{f.initials}</div>
+                <div aria-hidden className="flex aspect-square w-40 items-center justify-center rounded-[28px] bg-[linear-gradient(140deg,#6D28D9,#C084FC)] text-5xl font-semibold tracking-tight text-white">{f.initials}</div>
                 <h3 className="mt-6 text-title">{f.name}</h3>
                 <p className="text-muted">{f.role}, {`BodhixAI`}</p>
                 <div className="mt-4 flex gap-4">
@@ -260,13 +260,13 @@ export function ContactCTA() {
           const x = (i * 137) % 800, y = (i * 89) % 400, x2 = ((i + 5) * 137) % 800, y2 = ((i + 3) * 89) % 400;
           return (
             <g key={i}>
-              <line x1={x} y1={y} x2={x2} y2={y2} stroke="#4F8CFF" strokeOpacity={0.12} />
-              <circle cx={x} cy={y} r={i % 4 ? 1.6 : 2.6} fill={i % 3 ? "#4F8CFF" : "#786BFF"} />
+              <line x1={x} y1={y} x2={x2} y2={y2} stroke="#A78BFA" strokeOpacity={0.12} />
+              <circle cx={x} cy={y} r={i % 4 ? 1.6 : 2.6} fill={i % 3 ? "#A78BFA" : "#D8B4FE"} />
             </g>
           );
         })}
       </svg>
-      <div aria-hidden className="ambient absolute top-1/2 left-1/2 -z-10 size-[70vw] max-w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(79,140,255,0.2),transparent_60%)]" />
+      <div aria-hidden className="ambient absolute top-1/2 left-1/2 -z-10 size-[70vw] max-w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(167,139,250,0.2),transparent_60%)]" />
       <div className="container-page section text-center">
         <AnimatedText as="h2" text="Have something ambitious in mind?" className="text-display mx-auto max-w-4xl" />
         <Reveal delay={0.2}><p className="text-lead mt-6 text-white/60">Let&apos;s build something extraordinary.</p></Reveal>
