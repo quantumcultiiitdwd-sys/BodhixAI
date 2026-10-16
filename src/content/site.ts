@@ -472,8 +472,8 @@ export const founders = [
     initials: "SR",
     bio: "A robotics engineer and PhD researcher in control and intelligent systems, bringing AI out of the screen and into machines that move, sense, and act in the physical world.",
     highlights: [
-      "PhD in control and intelligent systems (in progress), with a thesis on AI for space-based space surveillance.",
-      "Robotics internship at the Singapore University of Technology and Design (SUTD).",
+      "PhD in control and intelligent systems — National University of Singapore (in progress), thesis on AI for space-based space surveillance.",
+      "Robotics internship at the Singapore University of Technology and Design (SUTD), working on robot fleet management and collaborative mapping and localization.",
       "Co-founder of Xyon Labs, a robotics R&D lab working across mechanical design, embedded electronics, ROS 2, and robot learning.",
       "Humanoid robots driven by vision-language-action models, plus whole-body control and loco-manipulation in simulation.",
       "Space robotics, manipulator design, and autonomous mobile robot fleets, from CAD and PCB design through to deployed software, with a background in national robotics competitions.",
