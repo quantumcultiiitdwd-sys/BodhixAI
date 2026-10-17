@@ -59,16 +59,9 @@ async function ProjectContent({ params }: { params: Promise<{ slug: string }> })
         <AnimatedText as="h1" text={p.title} className="text-hero mt-6 max-w-5xl !text-[clamp(2.5rem,6vw,5.5rem)]" animateOnMount />
         <Reveal delay={0.3}><p className="text-lead mt-8 max-w-3xl text-muted">{p.description}</p></Reveal>
         <Reveal delay={0.4} className="mt-14">
-          <div className={`relative aspect-[16/9] overflow-hidden rounded-[28px] md:aspect-[21/9] ${p.visual ? projectBackdrop[p.visual] : "bg-night"}`}>
-            {p.image ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img src={p.image.src} alt={p.image.alt} className="absolute inset-0 h-full w-full object-contain" />
-            ) : (
-              <>
-                <div className="absolute inset-[8%_10%] md:inset-[10%_22%]">{p.visual && <ProjectVisual kind={p.visual} />}</div>
-                <span className="absolute top-4 left-4 rounded-full bg-white/10 px-3 py-1 text-[11px] text-white/70 backdrop-blur">Illustrative concept</span>
-              </>
-            )}
+          <div className={`relative aspect-[16/9] overflow-hidden rounded-[28px] md:aspect-[21/9] ${projectBackdrop[p.visual]}`}>
+            <div className="absolute inset-[8%_10%] md:inset-[10%_22%]"><ProjectVisual kind={p.visual} /></div>
+            <span className="absolute top-4 left-4 rounded-full bg-white/10 px-3 py-1 text-[11px] text-white/70 backdrop-blur">Illustrative concept</span>
           </div>
         </Reveal>
       </section>

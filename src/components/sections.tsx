@@ -25,7 +25,7 @@ export function Intro() {
           <AnimatedText as="p" text="Complex technology. Beautifully simplified." className="text-display" />
           <Reveal delay={0.15}>
             <p className="text-lead mt-8 max-w-lg text-muted">
-              BodhixAI is a research-driven technology company creating secure, intelligent, and scalable digital systems. We combine AI innovation, cybersecurity engineering, and modern software development to solve meaningful business challenges.
+              BodhixAI is a research-driven technology company creating secure, intelligent, and scalable digital systems. We combine AI innovation, cybersecurity engineering, and modern software development to solve meaningful business challenges. We also bring that intelligence into the physical world, integrating AI with robotics and edge systems.
             </p>
           </Reveal>
         </div>
@@ -226,8 +226,7 @@ export function FounderSection() {
           {founders.map((f) => (
             <Reveal key={f.name} className="card grid gap-10 p-8 md:grid-cols-12 md:p-12">
               <div className="md:col-span-4">
-                <div aria-hidden className="flex aspect-square w-40 items-center justify-center rounded-[28px] bg-[linear-gradient(140deg,#6D28D9,#C084FC)] text-5xl font-semibold tracking-tight text-white">{f.initials}</div>
-                <h3 className="mt-6 text-title">{f.name}</h3>
+                <h3 className="text-title">{f.name}</h3>
                 <p className="text-muted">{f.role}, {`BodhixAI`}</p>
                 <div className="mt-4 flex gap-4">
                   {f.links.map((l) => <a key={l.href} href={l.href} target="_blank" rel="noreferrer" className="text-[15px] font-medium text-accent hover:underline">{l.label}</a>)}

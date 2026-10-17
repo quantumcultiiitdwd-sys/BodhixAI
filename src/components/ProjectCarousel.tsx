@@ -18,18 +18,11 @@ export function ProjectCard({ project, active = true }: { project: Project; acti
       className="group relative flex h-full flex-col overflow-hidden rounded-[28px] border border-line bg-mist"
     >
       <Link href={`/work/${project.slug}`} className="absolute inset-0 z-10" aria-label={`View project: ${project.title}`} tabIndex={active ? 0 : -1} />
-      <div className={`relative aspect-[16/10] overflow-hidden ${project.visual ? projectBackdrop[project.visual] : "bg-night"}`}>
-        {project.image ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={project.image.src} alt={project.image.alt} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.04]" />
-        ) : (
-          <>
-            <div className="parallax absolute inset-[9%_7%] transition-transform duration-700 ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.04]" style={{ translate: "var(--px, 0) 0" }}>
-              {project.visual && <ProjectVisual kind={project.visual} />}
-            </div>
-            <span className={`absolute top-4 left-4 rounded-full px-3 py-1 text-[11px] backdrop-blur ${dark ? "bg-white/10 text-white/70" : "bg-white/70 text-ink/60"}`}>Illustrative concept</span>
-          </>
-        )}
+      <div className={`relative aspect-[16/10] overflow-hidden ${projectBackdrop[project.visual]}`}>
+        <div className="parallax absolute inset-[9%_7%] transition-transform duration-700 ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.04]" style={{ translate: "var(--px, 0) 0" }}>
+          <ProjectVisual kind={project.visual} />
+        </div>
+        <span className={`absolute top-4 left-4 rounded-full px-3 py-1 text-[11px] backdrop-blur ${dark ? "bg-white/10 text-white/70" : "bg-white/70 text-ink/60"}`}>Illustrative concept</span>
       </div>
       <div className="flex flex-1 flex-col gap-4 p-6 md:p-8">
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px]">

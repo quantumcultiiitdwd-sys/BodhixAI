@@ -90,7 +90,7 @@ export const solutions: Solution[] = [
     description:
       "Production-focused deployment, infrastructure automation, model serving, and scalable AI operations.",
     visual: "infra",
-    capabilities: ["Containerised model serving", "CI/CD for ML", "Edge deployment", "Monitoring & drift detection"],
+    capabilities: ["Containerised model serving", "CI/CD for ML", "Edge AI for robotics & devices", "Monitoring & drift detection"],
   },
 ];
 
@@ -99,7 +99,7 @@ export const solutions: Solution[] = [
 // Honesty matters: every project states where it came from.
 export type ProjectOrigin = "Founder-led research" | "Research prototype" | "Independent engineering" | "Xyon Labs R&D";
 
-export type ProjectVisualKind = "ids" | "orbit" | "crowdfund" | "nft" | "federated" | "property";
+export type ProjectVisualKind = "ids" | "orbit" | "crowdfund" | "nft" | "federated" | "property" | "humanoid" | "lidar" | "rl" | "language";
 
 export type Project = {
   slug: string;
@@ -110,9 +110,7 @@ export type Project = {
   origin: ProjectOrigin;
   description: string;
   tags: string[];
-  visual?: ProjectVisualKind;
-  // Real screenshot or render; when set it replaces the illustrative visual.
-  image?: { src: string; alt: string };
+  visual: ProjectVisualKind;
   overview: string;
   challenge: string;
   approach: string[];
@@ -310,12 +308,12 @@ export const projects: Project[] = [
     number: "07",
     name: "Humanoid VLA",
     title: "Vision-Language-Action Control for Humanoid Robots",
-    category: "Embodied AI / Humanoid Robotics",
+    category: "Embodied AI / VLA Models",
     origin: "Xyon Labs R&D",
     description:
       "Loco-manipulation on the Unitree G1 humanoid: a vision-language-action model as the brain and a whole-body controller as the body, developed simulation-first.",
     tags: ["VLA Models", "NVIDIA GR00T", "Whole-Body Control", "Isaac Lab", "MuJoCo"],
-    image: { src: "/projects/humanoid-vla.jpg", alt: "Eight simulated Unitree G1 head-camera episodes, each captioned with its task instruction, such as picking up fruit and placing it on a plate." },
+    visual: "humanoid",
     overview:
       "Built at Xyon Labs, the robotics R&D lab co-founded by Sithija Vihanga Ranaraja. NVIDIA GR00T acts as the vision-language-action brain and outputs motion tokens, while the GEAR-SONIC whole-body controller turns them into coordinated leg, waist, arm, and hand motion on the Unitree G1.",
     challenge:
@@ -342,12 +340,12 @@ export const projects: Project[] = [
     number: "08",
     name: "LiDAR Perception",
     title: "LiDAR-Based Environment Perception",
-    category: "Perception AI / Robotics",
+    category: "Perception AI / Deep Learning",
     origin: "Xyon Labs R&D",
     description:
       "An end-to-end AI system that detects, classifies, and tracks people and objects from LiDAR data in real time, deployed on target hardware.",
     tags: ["PyTorch", "U-Net Segmentation", "Multi-Object Tracking", "2D LiDAR", "ROS 2"],
-    image: { src: "/projects/lidar-perception.jpg", alt: "Tracked people and furniture with identity labels beside a simulated room scanned by a robot's LiDAR." },
+    visual: "lidar",
     overview:
       "Built at Xyon Labs, the robotics R&D lab co-founded by Sithija Vihanga Ranaraja. Cameras struggle with lighting and privacy, so this perception layer works directly on LiDAR, covering data collection and labelling, model training, multi-frame tracking, and deployment on the target hardware.",
     challenge:
@@ -373,12 +371,12 @@ export const projects: Project[] = [
     number: "09",
     name: "RL Manipulation",
     title: "Reinforcement Learning for Dual-Arm Manipulation",
-    category: "Robot Learning / Manipulation",
+    category: "Reinforcement Learning / Embodied AI",
     origin: "Xyon Labs R&D",
     description:
       "A two-arm simulation platform for training reinforcement learning policies on contact-rich, two-handed tasks, with stacking and sorting as benchmarks.",
     tags: ["Reinforcement Learning", "PyTorch", "Genesis", "MoveIt", "RGB-D"],
-    image: { src: "/projects/rl-dual-arm.jpg", alt: "Two simulated robot arms stacking coloured blocks, with per-arm camera views and live task reward." },
+    visual: "rl",
     overview:
       "Built at Xyon Labs, the robotics R&D lab co-founded by Sithija Vihanga Ranaraja. Two AgileX PiPER 6-DOF arms work side by side, with a three-camera RGB-D rig (overhead, side, and wrist-level) that removes occlusion blind spots during grasps and handovers.",
     challenge:
@@ -404,12 +402,12 @@ export const projects: Project[] = [
     number: "10",
     name: "Language-Conditioned Manipulation",
     title: "Language-Conditioned Robot Manipulation",
-    category: "Embodied AI / VLA",
+    category: "Embodied AI / Multimodal Models",
     origin: "Xyon Labs R&D",
     description:
       "A vision-language-action pipeline in which two Franka arms follow typed instructions to pick, place, and sort objects.",
     tags: ["SmolVLA", "LeRobot", "Genesis", "PyTorch"],
-    image: { src: "/projects/language-manipulation.jpg", alt: "Two simulated Franka arms sorting coloured blocks on a table." },
+    visual: "language",
     overview:
       "Built at Xyon Labs, the robotics R&D lab co-founded by Sithija Vihanga Ranaraja. SmolVLA takes several camera views plus a language instruction and outputs one combined action for both Franka arms in the Genesis simulator.",
     challenge:
@@ -581,7 +579,6 @@ export const founders = [
   {
     name: "Sathwik Narkedimilli",
     role: "Co-founder",
-    initials: "SN",
     bio: "A researcher and engineer working where AI, cybersecurity, blockchain, and quantum computing meet — with the aim of translating deep science into practical, resilient products.",
     highlights: [
       "M.Eng, Electrical & Computer Engineering — National University of Singapore (in progress), thesis on physics-aware intelligent systems for network security.",
@@ -596,7 +593,6 @@ export const founders = [
   {
     name: "Sithija Vihanga Ranaraja",
     role: "Co-founder",
-    initials: "SR",
     bio: "A robotics engineer and PhD researcher in control and intelligent systems, bringing AI out of the screen and into machines that move, sense, and act in the physical world.",
     highlights: [
       "PhD in control and intelligent systems — National University of Singapore (in progress), thesis on AI for space-based space surveillance.",
