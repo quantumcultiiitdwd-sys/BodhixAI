@@ -160,30 +160,53 @@ function Property() {
 }
 
 function Humanoid() {
+  // Joint-trajectory lines for one predicted action chunk.
+  const joints = [
+    "M0 30 C15 28 25 18 40 20 S70 34 100 26",
+    "M0 38 C20 40 30 30 50 32 S80 22 100 24",
+    "M0 22 C18 24 32 34 52 30 S78 14 100 16",
+    "M0 44 C22 42 38 36 58 40 S82 44 100 38",
+  ];
   return (
-    <Chrome title="humanoid vla · policy run">
-      <div className="grid h-full grid-cols-5 gap-3">
-        <div className="col-span-2 flex flex-col gap-3">
-          <div className="rounded-xl bg-white/[0.04] p-3 ring-1 ring-white/8">
-            <p className="text-[10px] text-white/45">Instruction</p>
-            <p className="mt-1 text-[11px] text-white/80">“Place the apple on the plate”</p>
+    <Chrome title="vla policy · inference trace">
+      <div className="grid h-full grid-cols-12 gap-3">
+        <div className="col-span-4 flex flex-col gap-3">
+          <div className="grid flex-1 grid-cols-2 gap-2">
+            {["head cam", "wrist cam"].map((c, i) => (
+              <div key={c} className="relative overflow-hidden rounded-lg bg-[linear-gradient(160deg,#241a3d,#110d1c)] ring-1 ring-white/8">
+                <span className="absolute top-1.5 left-1.5 text-[8px] text-white/45">{c}</span>
+                <span className={`absolute rounded-[3px] border border-[#D8B4FE]/80 ${i ? "top-[45%] left-[30%] h-[30%] w-[38%]" : "top-[38%] left-[42%] h-[24%] w-[26%]"}`} />
+              </div>
+            ))}
           </div>
-          <div className="flex-1 rounded-xl bg-white/[0.04] p-3 ring-1 ring-white/8">
-            <p className="text-[10px] text-white/45">Motion tokens</p>
-            <div className="mt-2 grid grid-cols-6 gap-1">
-              {Array.from({ length: 18 }, (_, i) => <span key={i} className="h-3 rounded-sm" style={{ background: i % 5 === 2 ? "#D8B4FE" : `rgba(167,139,250,${0.15 + ((i * 7) % 10) / 20})` }} />)}
-            </div>
+          <div className="rounded-xl bg-white/[0.04] p-2.5 ring-1 ring-white/8">
+            <p className="text-[9px] text-white/45">Instruction</p>
+            <p className="mt-1 text-[10px] leading-snug text-white/80">Pick up the apple and place it on the plate</p>
           </div>
         </div>
-        <div className="col-span-3 rounded-xl bg-white/[0.03] ring-1 ring-white/8">
-          <svg viewBox="0 0 100 85" className="h-full w-full" aria-hidden>
-            <circle cx={50} cy={16} r={6} fill="none" stroke="#A78BFA" strokeWidth={0.8} />
-            <path d="M50 22 V48 M50 28 L36 40 L44 52 M50 28 L64 38 L72 30 M50 48 L42 72 M50 48 L58 72" fill="none" stroke="rgba(255,255,255,.55)" strokeWidth={1.4} strokeLinecap="round" />
-            {[[50, 28], [36, 40], [64, 38], [50, 48], [42, 72], [58, 72]].map(([x, y], i) => <circle key={i} cx={x} cy={y} r={1.6} fill="#A78BFA" />)}
-            <circle cx={74} cy={28} r={3} fill="#FF5A5F" />
-            <circle cx={74} cy={28} r={6} fill="none" stroke="#D8B4FE" strokeOpacity={0.6} strokeWidth={0.5} strokeDasharray="1.5 1.5" />
-            <line x1={20} y1={78} x2={80} y2={78} stroke="rgba(255,255,255,.15)" strokeWidth={0.5} />
+        <div className="col-span-3 flex flex-col justify-center gap-1.5 rounded-xl bg-white/[0.03] p-2.5 ring-1 ring-white/8">
+          {["Vision encoder", "Language model", "Action head"].map((l, i) => (
+            <div key={l} className="flex flex-col items-center">
+              <div className={`w-full rounded-md px-2 py-1.5 text-center text-[9px] ${i === 2 ? "bg-[#8B5CF6]/30 text-white ring-1 ring-[#A78BFA]/60" : "bg-white/[0.06] text-white/70 ring-1 ring-white/10"}`}>{l}</div>
+              {i < 2 && <span className="h-2 w-px bg-white/20" />}
+            </div>
+          ))}
+        </div>
+        <div className="col-span-5 flex flex-col rounded-xl bg-white/[0.04] p-3 ring-1 ring-white/8">
+          <div className="flex items-center justify-between">
+            <p className="text-[10px] text-white/45">Action chunk · joint targets</p>
+            <span className="text-[9px] text-white/35">t+0 … t+16</span>
+          </div>
+          <svg viewBox="0 0 100 50" className="mt-2 w-full flex-1" preserveAspectRatio="none" aria-hidden>
+            {[12.5, 25, 37.5].map((y) => <line key={y} x1={0} y1={y} x2={100} y2={y} stroke="rgba(255,255,255,.06)" strokeWidth={0.4} />)}
+            {joints.map((d, i) => <path key={i} d={d} fill="none" stroke={["#D8B4FE", "#A78BFA", "#8B5CF6", "rgba(255,255,255,.35)"][i]} strokeWidth={0.9} vectorEffect="non-scaling-stroke" />)}
+            <line x1={40} y1={0} x2={40} y2={50} stroke="#D8B4FE" strokeOpacity={0.4} strokeWidth={0.4} strokeDasharray="1.5 1.5" />
           </svg>
+          <div className="mt-2 flex gap-3 text-[8px] text-white/45">
+            {[["#D8B4FE", "shoulder"], ["#A78BFA", "elbow"], ["#8B5CF6", "wrist"], ["rgba(255,255,255,.35)", "hand"]].map(([c, l]) => (
+              <span key={l} className="flex items-center gap-1"><span className="h-0.5 w-2.5 rounded-full" style={{ background: c }} />{l}</span>
+            ))}
+          </div>
         </div>
       </div>
     </Chrome>
