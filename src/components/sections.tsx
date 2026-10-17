@@ -173,7 +173,7 @@ export function ResearchShowcase({ limit = 4 }: { limit?: number }) {
       <div className="container-page">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div id="research-title">
-            <SectionHeading eyebrow="Research & innovation" title="Where research meets reality." subtitle="Our foundations come from peer-reviewed work in AI security, connected systems, and quantum machine learning, led by our co-founder and collaborators." />
+            <SectionHeading eyebrow="Research & innovation" title="Where research meets reality." subtitle="Our foundations come from peer-reviewed work in AI security, connected systems, and quantum machine learning, led by co-founder Sathwik Narkedimilli and collaborators." />
           </div>
           <TextLink href="/research">All research</TextLink>
         </div>

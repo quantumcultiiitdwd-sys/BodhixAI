@@ -97,7 +97,7 @@ export const solutions: Solution[] = [
 /* ----------------------------------- Projects --------------------------------- */
 
 // Honesty matters: every project states where it came from.
-export type ProjectOrigin = "Founder-led research" | "Research prototype" | "Independent engineering";
+export type ProjectOrigin = "Founder-led research" | "Research prototype" | "Independent engineering" | "Xyon Labs R&D";
 
 export type ProjectVisualKind = "ids" | "orbit" | "crowdfund" | "nft" | "federated" | "property";
 
@@ -110,7 +110,9 @@ export type Project = {
   origin: ProjectOrigin;
   description: string;
   tags: string[];
-  visual: ProjectVisualKind;
+  visual?: ProjectVisualKind;
+  // Real screenshot or render; when set it replaces the illustrative visual.
+  image?: { src: string; alt: string };
   overview: string;
   challenge: string;
   approach: string[];
@@ -166,7 +168,7 @@ export const projects: Project[] = [
     tags: ["LLMs", "RAG", "Agentic AI", "Evaluation Pipelines"],
     visual: "orbit",
     overview:
-      "ORBIT is a benchmark developed by our co-founder during a research internship with IBM Research. It asks a simple question with hard answers: can an AI agent reason through a real operational incident, step by step?",
+      "ORBIT is a benchmark developed by co-founder Sathwik Narkedimilli during a research internship with IBM Research. It asks a simple question with hard answers: can an AI agent reason through a real operational incident, step by step?",
     challenge:
       "IT operations problems unfold over many steps — reading telemetry, forming hypotheses, choosing actions. Single-turn benchmarks don't capture that, so it is hard to know whether an agent is actually ready for operational work.",
     approach: [
@@ -198,7 +200,7 @@ export const projects: Project[] = [
     tags: ["Blockchain", "Smart Contracts", "Web3"],
     visual: "crowdfund",
     overview:
-      "An independent engineering project by our co-founder exploring how smart contracts can make fundraising more transparent for early-stage startups and their backers.",
+      "An independent engineering project by co-founder Sathwik Narkedimilli exploring how smart contracts can make fundraising more transparent for early-stage startups and their backers.",
     challenge:
       "Backers of early-stage ventures rarely see where their money goes. Traditional platforms ask for trust; blockchains can offer verification instead.",
     approach: [
@@ -228,7 +230,7 @@ export const projects: Project[] = [
     tags: ["Motoko", "Blockchain", "Web3"],
     visual: "nft",
     overview:
-      "A Motoko-powered NFT marketplace built by our co-founder on the Internet Computer, designed to help artists mint, list, and trade their work.",
+      "A Motoko-powered NFT marketplace built by co-founder Sathwik Narkedimilli on the Internet Computer, designed to help artists mint, list, and trade their work.",
     challenge:
       "Creators need a simple way to mint and sell digital work without giving up control to a centralised intermediary.",
     approach: [
@@ -256,7 +258,7 @@ export const projects: Project[] = [
     tags: ["Federated Learning", "Privacy Engineering", "Blockchain", "AI"],
     visual: "federated",
     overview:
-      "A line of research by our co-founder and collaborators on how many devices — vehicles, industrial sensors, city infrastructure — can learn together without pooling raw data. Results appear in publications including FedGuard-IIoT (IEEE GLOBECOM Workshops 2025), FAPL-DM-BC (COMSNETS 2026), and FL-DABE-BC (ACM SenSys FMSys 2025).",
+      "A line of research by co-founder Sathwik Narkedimilli and collaborators on how many devices — vehicles, industrial sensors, city infrastructure — can learn together without pooling raw data. Results appear in publications including FedGuard-IIoT (IEEE GLOBECOM Workshops 2025), FAPL-DM-BC (COMSNETS 2026), and FL-DABE-BC (ACM SenSys FMSys 2025).",
     challenge:
       "Connected systems generate sensitive data at the edge. Centralising it creates privacy risk; federating it creates new questions about trust, authentication, and poisoned updates.",
     approach: [
@@ -287,7 +289,7 @@ export const projects: Project[] = [
     tags: ["Express.js", "MySQL", "Full-Stack Development"],
     visual: "property",
     overview:
-      "A full-stack property rental application built by our co-founder, connecting homeowners with people looking for their next place.",
+      "A full-stack property rental application built by co-founder Sathwik Narkedimilli, connecting homeowners with people looking for their next place.",
     challenge:
       "Rental search is often fragmented across listings, messages, and spreadsheets. Both sides need one clear place to meet.",
     approach: [
@@ -302,6 +304,131 @@ export const projects: Project[] = [
     ],
     outcomes: ["Complete listing-to-enquiry flow.", "Open-source implementation available on GitHub."],
     links: [{ label: "Source on GitHub", href: `${GH}/DreamHomE_DBMS_Proj` }],
+  },
+  {
+    slug: "humanoid-vla",
+    number: "07",
+    name: "Humanoid VLA",
+    title: "Vision-Language-Action Control for Humanoid Robots",
+    category: "Embodied AI / Humanoid Robotics",
+    origin: "Xyon Labs R&D",
+    description:
+      "Loco-manipulation on the Unitree G1 humanoid: a vision-language-action model as the brain and a whole-body controller as the body, developed simulation-first.",
+    tags: ["VLA Models", "NVIDIA GR00T", "Whole-Body Control", "Isaac Lab", "MuJoCo"],
+    image: { src: "/projects/humanoid-vla.jpg", alt: "Eight simulated Unitree G1 head-camera episodes, each captioned with its task instruction, such as picking up fruit and placing it on a plate." },
+    overview:
+      "Built at Xyon Labs, the robotics R&D lab co-founded by Sithija Vihanga Ranaraja. NVIDIA GR00T acts as the vision-language-action brain and outputs motion tokens, while the GEAR-SONIC whole-body controller turns them into coordinated leg, waist, arm, and hand motion on the Unitree G1.",
+    challenge:
+      "Humanoid loco-manipulation needs a policy that understands the task and a controller that keeps the robot balanced while the arms do the work. Neither can be tuned safely on hardware first.",
+    approach: [
+      "Bring up the whole-body controller in a sim-to-sim loop so balance, walking, and turning are reliable before any task learning.",
+      "Generate a synthetic egocentric manipulation dataset from the G1's own head camera, with a language instruction attached to every episode.",
+      "Fine-tune the vision-language-action policy on that data and evaluate in simulation before moving to hardware.",
+    ],
+    architecture: [
+      { label: "Instruct", detail: "Natural-language task and head-camera images." },
+      { label: "Reason", detail: "GR00T vision-language-action policy." },
+      { label: "Act", detail: "Whole-body controller for balance and limb motion." },
+      { label: "Validate", detail: "Isaac Lab and MuJoCo simulation before hardware." },
+    ],
+    outcomes: [
+      "Synthetic egocentric manipulation dataset of 82 validated episodes: pick-and-place, stacking, pouring, two-handed lifts, and drawer opening.",
+      "Arm and hand tasks executed while the whole-body controller keeps the robot balanced and walking.",
+      "Work in progress; hardware deployment follows simulation validation.",
+    ],
+  },
+  {
+    slug: "lidar-perception",
+    number: "08",
+    name: "LiDAR Perception",
+    title: "LiDAR-Based Environment Perception",
+    category: "Perception AI / Robotics",
+    origin: "Xyon Labs R&D",
+    description:
+      "An end-to-end AI system that detects, classifies, and tracks people and objects from LiDAR data in real time, deployed on target hardware.",
+    tags: ["PyTorch", "U-Net Segmentation", "Multi-Object Tracking", "2D LiDAR", "ROS 2"],
+    image: { src: "/projects/lidar-perception.jpg", alt: "Tracked people and furniture with identity labels beside a simulated room scanned by a robot's LiDAR." },
+    overview:
+      "Built at Xyon Labs, the robotics R&D lab co-founded by Sithija Vihanga Ranaraja. Cameras struggle with lighting and privacy, so this perception layer works directly on LiDAR, covering data collection and labelling, model training, multi-frame tracking, and deployment on the target hardware.",
+    challenge:
+      "A 2D laser scan is sparse and ambiguous: a person, a chair leg, and a wall corner can all look alike in a single frame.",
+    approach: [
+      "Segment 2D LiDAR scans semantically with a U-Net-based model.",
+      "Recognise new object types zero-shot, without retraining from scratch.",
+      "Track people and moving objects across frames while keeping stable identities, validated first in simulation.",
+    ],
+    architecture: [
+      { label: "Sense", detail: "Raw 2D LiDAR scans." },
+      { label: "Segment", detail: "U-Net semantic segmentation per scan." },
+      { label: "Classify", detail: "Known and zero-shot object classes." },
+      { label: "Track", detail: "Real-time multi-object tracking with identities." },
+    ],
+    outcomes: [
+      "Deployed on the target hardware and running in real operation.",
+      "Real-time tracking of people and dynamic objects, plus a stable labelled map of the environment.",
+    ],
+  },
+  {
+    slug: "rl-manipulation",
+    number: "09",
+    name: "RL Manipulation",
+    title: "Reinforcement Learning for Dual-Arm Manipulation",
+    category: "Robot Learning / Manipulation",
+    origin: "Xyon Labs R&D",
+    description:
+      "A two-arm simulation platform for training reinforcement learning policies on contact-rich, two-handed tasks, with stacking and sorting as benchmarks.",
+    tags: ["Reinforcement Learning", "PyTorch", "Genesis", "MoveIt", "RGB-D"],
+    image: { src: "/projects/rl-dual-arm.jpg", alt: "Two simulated robot arms stacking coloured blocks, with per-arm camera views and live task reward." },
+    overview:
+      "Built at Xyon Labs, the robotics R&D lab co-founded by Sithija Vihanga Ranaraja. Two AgileX PiPER 6-DOF arms work side by side, with a three-camera RGB-D rig (overhead, side, and wrist-level) that removes occlusion blind spots during grasps and handovers.",
+    challenge:
+      "Reinforcement learning on two arms is unstable: sparse rewards, collisions between the arms, and infeasible policy outputs all stall training.",
+    approach: [
+      "Design reward functions that mix sparse task-completion rewards with dense shaping: distance to goal, grasp stability, collision penalties, and coordination bonuses.",
+      "Fuse joint states, end-effector poses, and RGB-D features as observations; act in Cartesian space with safety clamps.",
+      "Fall back to collision-aware trajectory planning whenever the learned policy outputs an infeasible command.",
+    ],
+    architecture: [
+      { label: "Perceive", detail: "Three-camera RGB-D rig and joint states." },
+      { label: "Learn", detail: "RL policy with shaped rewards and a task curriculum." },
+      { label: "Guard", detail: "Safety clamps and planning fallback." },
+      { label: "Execute", detail: "Coordinated two-arm Cartesian control." },
+    ],
+    outcomes: [
+      "Research platform for bimanual RL with stacking and sorting benchmarks.",
+      "Base for vision-language-action experiments that combine vision and RL to detect, classify, and manipulate objects.",
+    ],
+  },
+  {
+    slug: "language-manipulation",
+    number: "10",
+    name: "Language-Conditioned Manipulation",
+    title: "Language-Conditioned Robot Manipulation",
+    category: "Embodied AI / VLA",
+    origin: "Xyon Labs R&D",
+    description:
+      "A vision-language-action pipeline in which two Franka arms follow typed instructions to pick, place, and sort objects.",
+    tags: ["SmolVLA", "LeRobot", "Genesis", "PyTorch"],
+    image: { src: "/projects/language-manipulation.jpg", alt: "Two simulated Franka arms sorting coloured blocks on a table." },
+    overview:
+      "Built at Xyon Labs, the robotics R&D lab co-founded by Sithija Vihanga Ranaraja. SmolVLA takes several camera views plus a language instruction and outputs one combined action for both Franka arms in the Genesis simulator.",
+    challenge:
+      "A language-driven policy has to ground words in the scene and coordinate two arms at once, and it must hold up when lighting and object placement change.",
+    approach: [
+      "Feed multi-camera views and a typed instruction to a single vision-language-action policy.",
+      "Evaluate under randomised lighting and object placement.",
+      "Break failures down by mode and use the analysis to drive each round of data and training.",
+    ],
+    architecture: [
+      { label: "Instruct", detail: "Typed natural-language command." },
+      { label: "See", detail: "Multiple camera views of the workspace." },
+      { label: "Act", detail: "SmolVLA policy controlling both arms." },
+      { label: "Evaluate", detail: "Task completion, grasp success, failure modes." },
+    ],
+    outcomes: [
+      "Bimanual pick, place, and sort driven by plain-language instructions.",
+      "Evaluation loop under domain randomisation that guides policy iteration.",
+    ],
   },
 ];
 

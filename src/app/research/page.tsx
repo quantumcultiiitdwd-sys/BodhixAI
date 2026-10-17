@@ -17,7 +17,7 @@ export default function ResearchPage() {
       <PageHero eyebrow="Research & innovation" title="Where research meets reality." subtitle="We take ideas from the research frontier and engineer them into systems that hold up in production." />
       <div className="container-page pb-28">
         <p className="mb-14 max-w-3xl rounded-2xl bg-mist p-5 text-[14px] text-muted">
-          The work below was led or co-authored by our co-founder with academic and institutional collaborators. It is individual research, not proprietary BodhixAI intellectual property. Each item is marked as published, accepted (forthcoming), or ongoing.
+          The work below was led or co-authored by co-founder Sathwik Narkedimilli with academic and institutional collaborators. It is individual research, not proprietary BodhixAI intellectual property. Each item is marked as published, accepted (forthcoming), or ongoing.
         </p>
         {order.map((status) => {
           const items = research.filter((r) => r.status === status);
